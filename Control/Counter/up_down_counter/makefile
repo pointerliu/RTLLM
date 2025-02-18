@@ -9,7 +9,10 @@ vcs:
 		${TEST_DESIGN}.v testbench.v
 
 sim:
-		./simv -l run.log
+		./simv > run.log
 
 clean:
 		rm -rf *.log  csrc  simv*  *.key *.vpd  DVEfiles coverage *.vdb output.txt
+
+iverilog:
+		iverilog -Wall -Winfloop -Wno-timescale -g2012 -o simv ${TEST_DESIGN}.v testbench.v

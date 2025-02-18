@@ -17,22 +17,37 @@ module testbench;
     
 
     reg [3:0] i;
-    reg [7:0] data [0:9] = {8'b00000001, 8'b00000001, 8'b00000010, 8'b00000100, 8'b00001000,8'b00010000, 8'b00100000, 8'b01000000, 8'b10000000, 8'b00000001};
+    reg [7:0] data [0:9];
+    // {8'b00000001, 8'b00000001, 8'b00000010, 8'b00000100, 8'b00001000,8'b00010000, 8'b00100000, 8'b01000000, 8'b10000000, 8'b00000001};
+
 
     initial begin
         clk = 0;
         reset = 1;
         i=0;
+        data[0] = 8'b00000001;
+        data[1] = 8'b00000010;
+        data[2] = 8'b00000100;
+        data[3] = 8'b00001000;
+        data[4] = 8'b00010000;
+        data[5] = 8'b00100000;
+        data[6] = 8'b01000000;
+        data[7] = 8'b10000000;
+        data[8] = 8'b00000001;
+        data[9] = 8'b00000010;
         #10 reset = 0;
     end
     // Monitor for displaying output
     always @(posedge clk) begin
-        
-        if (out !== data[i]) begin
-            $display("Failed at i=%d, out=%b, expected=%b", i, out, data[i]);
-            // $finish;
+        if (reset) begin
+
+        end else begin
+            if (out !== data[i]) begin
+                $display("Failed at i=%d, out=%b, expected=%b", i, out, data[i]);
+                // $finish;
+            end
+            i = i + 1;
         end
-        i = i + 1;
     end
 
     // Stop simulation after checking all values
@@ -44,7 +59,7 @@ module testbench;
     end
     // Stop simulation after 100 clock cycles
     initial begin
-        #100 $finish;
+        #110 $finish;
     end
 
 endmodule
