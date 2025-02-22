@@ -15,7 +15,7 @@ module clkgenerator_tb;
         // Simulate for a certain number of clock cycles
         repeat (20) begin // Simulate 20 clock cycles
             #5; // Time delay between clock cycles
-            error = (res == clk_tb) ? error :error+1;
+            error = (res == clk_tb) ? error + 1 :error;
             res = res + 1;
             // $display(clk_tb);
         end

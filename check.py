@@ -3,7 +3,7 @@ from pathlib import Path
 import shutil
 import subprocess
 
-if __name__ == '__main__':
+def check():
     for directory in Path(".").rglob("*"):
         if not directory.is_dir():
             continue
@@ -34,3 +34,7 @@ if __name__ == '__main__':
         log: Path = directory / "run.log"
         if not log.exists() or "Your Design Passed" not in log.read_text():
             print(f"[ERROR] test failed at prob {directory} error")
+
+
+if __name__ == '__main__':
+    check()
