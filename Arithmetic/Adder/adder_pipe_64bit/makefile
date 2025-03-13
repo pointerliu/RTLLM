@@ -1,6 +1,6 @@
 .PHONY: vcs sim clean
 
-TEST_DESIGN = adder_pip_64bit
+TEST_DESIGN = adder_pipe_64bit
 
 vcs:
 		vcs -sverilog +v2k -timescale=1ns/1ns       \
